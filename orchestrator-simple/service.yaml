@@ -23,13 +23,13 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - >
-              aws s3 cp s3://repl/code/service_name/ /workspace/ --recursive --endpoint-url https://8653feb6d5ed38aaa5944c05e9718328.r2.cloudflarestorage.com &&
+              aws s3 cp s3://repl/code/service_name/ /workspace/ --recursive --endpoint-url <your_endpoint_url> &&
               echo "Resources copied from S3";
           env:
             - name: AWS_ACCESS_KEY_ID
-              value: 7dbdbef6eb1bc9c50ca27bf9f338dc37
+              value: your_aws_key_id
             - name: AWS_SECRET_ACCESS_KEY
-              value: 85ca75cffa1fd45fd86604e83447044aab54fba6fc3750ca3c4200809252aff4
+              value: your_aws_secret_key
           volumeMounts:
             - name: workspace-volume
               mountPath: /workspace
