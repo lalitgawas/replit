@@ -12,7 +12,7 @@ function useSocket(replId: string) {
     const [socket, setSocket] = useState<Socket | null>(null);
 
     useEffect(() => {
-        const newSocket = io(`ws://ws.${replId}.34.27.254.212.nip.io`);
+        const newSocket = io(`ws://ws.${replId}.212.2.249.218.nip.io`);
         setSocket(newSocket);
 
         return () => {
@@ -26,32 +26,74 @@ function useSocket(replId: string) {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
 `;
 
-const ButtonContainer = styled.div`
+const TopBar = styled.div`
   display: flex;
-  justify-content: flex-end; /* Aligns children (button) to the right */
-  padding: 10px; /* Adds some space around the button */
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--panel-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+`;
+
+const Brand = styled.div`
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const ToggleButton = styled.button<{ active?: boolean }>`
+  background: ${props => props.active ? 'rgba(99, 102, 241, 0.15)' : 'transparent'};
+  color: ${props => props.active ? 'var(--accent-primary)' : 'var(--text-secondary)'};
+  border: 1px solid ${props => props.active ? 'rgba(99, 102, 241, 0.3)' : 'var(--panel-border)'};
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
 `;
 
 const Workspace = styled.div`
   display: flex;
-  margin: 0;
-  font-size: 16px;
+  flex: 1;
+  overflow: hidden;
   width: 100%;
 `;
 
 const LeftPanel = styled.div`
-  flex: 1;
-  width: 60%;
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--panel-border);
+  min-width: 0;
+  height: 100%;
 `;
 
 const RightPanel = styled.div`
   flex: 1;
-  width: 40%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  min-width: 0;
+  height: 100%;
 `;
-
 
 export const CodingPage = () => {
     const [podCreated, setPodCreated] = useState(false);
@@ -115,9 +157,15 @@ export const CodingPagePostPodCreation = () => {
 
     return (
         <Container>
-            <ButtonContainer>
-                <button onClick={() => setShowOutput(!showOutput)}>See output</button>
-            </ButtonContainer>
+            <TopBar>
+                <Brand>Replit</Brand>
+                <ToggleButton 
+                    active={showOutput} 
+                    onClick={() => setShowOutput(!showOutput)}
+                >
+                    {showOutput ? 'Hide Output' : 'Show Output'}
+                </ToggleButton>
+            </TopBar>
             <Workspace>
                 <LeftPanel>
                     <Editor socket={socket} selectedFile={selectedFile} onSelect={onSelect} files={fileStructure} />

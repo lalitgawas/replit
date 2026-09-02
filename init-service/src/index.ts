@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config();
-import { copyS3Folder } from "./aws.js";
+import { copyS3Folder, folderExists } from "./aws.js";
 
 
 const app = express();
@@ -18,9 +18,13 @@ app.post("/project", async (req, res) => {
         return;
     }
 
- await copyS3Folder(`base/${language}`, `code/${replId}`);
-
-    res.send("Project created");
+    const exists = await folderExists(`code/${replId}`);
+    if (!exists) {
+        await copyS3Folder(`base/${language}`, `code/${replId}`);
+        res.send("Project created");
+    } else {
+        res.send("Project already exists, restoring old code instead!");
+    }
 })
 
 const port = process.env.PORT || 3000;

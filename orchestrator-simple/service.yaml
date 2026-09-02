@@ -23,13 +23,13 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - >
-              aws s3 cp s3://repl/code/service_name/ /workspace/ --recursive --endpoint-url <your_endpoint_url> &&
+              aws s3 cp s3://repl/code/service_name/ /workspace/ --recursive --endpoint-url https://8653feb6d5ed38aaa5944c05e9718328.r2.cloudflarestorage.com &&
               echo "Resources copied from S3";
           env:
             - name: AWS_ACCESS_KEY_ID
-              value: your_aws_key_id
+              value: value
             - name: AWS_SECRET_ACCESS_KEY
-              value: your_aws_secret_key
+              value: value
           volumeMounts:
             - name: workspace-volume
               mountPath: /workspace
@@ -62,6 +62,9 @@ spec:
       name: user
       port: 3000
       targetPort: 3000
+
+
+      
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -70,7 +73,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: ws.service_name.34.27.254.212.nip.io
+  - host: ws.service_name.212.2.249.218.nip.io
     http:
       paths:
       - path: /
@@ -80,7 +83,7 @@ spec:
             name: service_name
             port:
               number: 3001
-  - host: app.service_name.34.27.254.212.nip.io
+  - host: app.service_name.212.2.249.218.nip.io
     http:
       paths:
       - path: /

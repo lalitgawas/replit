@@ -29,7 +29,7 @@ export const Editor = ({
     }, [selectedFile])
 
     return (
-        <div>
+        <EditorContainer>
             <Main>
                 <Sidebar>
                     <FileTree
@@ -40,10 +40,20 @@ export const Editor = ({
                 </Sidebar>
                 <Code socket={socket} selectedFile={selectedFile} />
             </Main>
-        </div>
+        </EditorContainer>
     );
 };
 
+const EditorContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Main = styled.main`
   display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
 `;

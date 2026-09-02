@@ -46,6 +46,16 @@ export async function testConnection() {
   }
 }
 
+export async function folderExists(prefix: string): Promise<boolean> {
+  const data = await s3.send(
+    new ListObjectsV2Command({
+      Bucket: process.env.S3_BUCKET!,
+      Prefix: prefix,
+      MaxKeys: 1,
+    })
+  );
+  return !!data.Contents && data.Contents.length > 0;
+}
 
 export async function copyS3Folder(
   sourcePrefix: string,
