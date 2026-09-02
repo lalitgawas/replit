@@ -16,7 +16,7 @@ export const Editor = ({
     files: RemoteFile[];
     onSelect: (file: File) => void;
     selectedFile: File | undefined;
-    socket: Socket;
+    socket: Socket | undefined;
 }) => {
     const rootDir = useMemo(() => {
         return buildFileTree(files);
@@ -38,7 +38,7 @@ export const Editor = ({
                         onSelect={onSelect}
                     />
                 </Sidebar>
-                <Code socket={socket} selectedFile={selectedFile} />
+                <Code socket={socket ?? undefined} selectedFile={selectedFile} />
             </Main>
         </EditorContainer>
     );

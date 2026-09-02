@@ -19,7 +19,7 @@ const OPTIONS_TERM = {
         background: "black"
     }
 };
-export const TerminalComponent = ({ socket }: { socket: Socket }) => {
+export const TerminalComponent = ({ socket }: { socket: Socket | undefined }) => {
     const terminalRef = useRef(null);
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export const TerminalComponent = ({ socket }: { socket: Socket }) => {
         term.loadAddon(fitAddon);
         term.open(terminalRef.current);
         fitAddon.fit();
-        function terminalHandler({ data }) {
+        function terminalHandler({ data }: any) {
             if (data instanceof ArrayBuffer) {
                 console.error(data);
                 console.log(ab2str(data))

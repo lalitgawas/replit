@@ -2,7 +2,7 @@ import Editor from "@monaco-editor/react";
 import { type File } from "../utils/file-manager";
 import { Socket } from "socket.io-client";
 
-export const Code = ({ selectedFile, socket }: { selectedFile: File | undefined, socket: Socket }) => {
+export const Code = ({ selectedFile, socket }: { selectedFile: File | undefined, socket: Socket | undefined }) => {
     if (!selectedFile)
         return null
 
@@ -16,9 +16,9 @@ export const Code = ({ selectedFile, socket }: { selectedFile: File | undefined,
     else if (language === "py")
         language = "python"
 
-    function debounce(func: (value: string) => void, wait: number) {
-        let timeout: number;
-        return (value: string) => {
+    function debounce(func: (value: string | undefined) => void, wait: number) {
+        let timeout: ReturnType<typeof setTimeout>;
+        return (value: string | undefined) => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
                 func(value);
@@ -35,8 +35,9 @@ export const Code = ({ selectedFile, socket }: { selectedFile: File | undefined,
             onChange={debounce((value) => {
                 // Should send diffs, for now sending the whole file
                 // PR and win a bounty!
-                socket.emit("updateContent", { path: selectedFile.path, content: value });
-            }, 300)}
+                socket?.emit("updateContent", { path: selectedFile.path, content: value });
+            }, 300)} 
         />
     )
 }
+

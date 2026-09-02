@@ -72,6 +72,7 @@ export function buildFileTree(data: RemoteFile[]): Directory {
         cache.set(file.id, file);
     });
 
+    // @ts-ignore
     cache.forEach((value, key) => {
 
         if (value.parentId === "0") {

@@ -168,11 +168,11 @@ export const CodingPagePostPodCreation = () => {
             </TopBar>
             <Workspace>
                 <LeftPanel>
-                    <Editor socket={socket} selectedFile={selectedFile} onSelect={onSelect} files={fileStructure} />
+                    <Editor socket={socket ?? undefined} selectedFile={selectedFile} onSelect={onSelect} files={fileStructure} />
                 </LeftPanel>
                 <RightPanel>
                     {showOutput && <Output />}
-                    <Terminal socket={socket} />
+                    <Terminal socket={socket ?? undefined} />
                 </RightPanel>
             </Workspace>
         </Container>
