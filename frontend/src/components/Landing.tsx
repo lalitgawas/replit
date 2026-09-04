@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
+
 /** Constants */
-const SLUG_WORKS = ["car", "dog", "computer", "person", "inside", "word", "for", "please", "to", "cool", "open", "source"];
+const SLUG_WORKS = ["car", "dog", "computer", "person", "inside", "word", "for", "please", "to", "cool", "open", "source", "blind"];
 const SERVICE_URL = import.meta.env.VITE_INIT_SERVICE_URL || "/api/init";
 
 const Container = styled.div`
