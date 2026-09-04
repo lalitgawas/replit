@@ -103,7 +103,11 @@ export const CodingPage = () => {
     useEffect(() => {
         if (replId) {
             const orchestratorUrl = import.meta.env.VITE_ORCHESTRATOR_URL || "http://localhost:3002";
-            axios.post(`${orchestratorUrl}/start`, { replId })
+            axios.post(`${orchestratorUrl}/start`, { replId }, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            })
                 .then(() => setPodCreated(true))
                 .catch((err) => console.error(err));
         }
