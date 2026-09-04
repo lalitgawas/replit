@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 /** Constants */
 const SLUG_WORKS = ["car", "dog", "computer", "person", "inside", "word", "for", "please", "to", "cool", "open", "source"];
-const SERVICE_URL = "http://localhost:3000";
+const SERVICE_URL = import.meta.env.VITE_INIT_SERVICE_URL || "http://localhost:3001";
 
 const Container = styled.div`
   display: flex;

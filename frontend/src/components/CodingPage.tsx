@@ -102,7 +102,8 @@ export const CodingPage = () => {
 
     useEffect(() => {
         if (replId) {
-            axios.post(`http://localhost:3002/start`, { replId })
+            const orchestratorUrl = import.meta.env.VITE_ORCHESTRATOR_URL || "http://localhost:3002";
+            axios.post(`${orchestratorUrl}/start`, { replId })
                 .then(() => setPodCreated(true))
                 .catch((err) => console.error(err));
         }
