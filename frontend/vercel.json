@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/init/:path*",
+      "destination": "http://13.234.146.240:3000/:path*"
+    },
+    {
+      "source": "/api/orchestrator/:path*",
+      "destination": "http://13.234.146.240:3002/:path*"
+    }
+  ]
+}

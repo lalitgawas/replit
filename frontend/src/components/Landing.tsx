@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 /** Constants */
 const SLUG_WORKS = ["car", "dog", "computer", "person", "inside", "word", "for", "please", "to", "cool", "open", "source"];
-const SERVICE_URL = import.meta.env.VITE_INIT_SERVICE_URL || "http://localhost:3001";
+const SERVICE_URL = import.meta.env.VITE_INIT_SERVICE_URL || "/api/init";
 
 const Container = styled.div`
   display: flex;
@@ -142,11 +142,7 @@ export const Landing = () => {
         </StyledSelect>
         <StyledButton disabled={loading} onClick={async () => {
           setLoading(true);
-          await axios.post(`${SERVICE_URL}/project`, { replId, language }, {
-            headers: {
-              'ngrok-skip-browser-warning': 'true'
-            }
-          });
+          await axios.post(`${SERVICE_URL}/project`, { replId, language });
           setLoading(false);
           navigate(`/coding?replId=${replId}`)
         }}>{loading ? "Starting ..." : "Start Coding"}</StyledButton>

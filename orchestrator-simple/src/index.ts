@@ -7,7 +7,8 @@ import { KubeConfig, AppsV1Api, CoreV1Api, NetworkingV1Api } from "@kubernetes/c
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+const frontendUrl = process.env.FRONTEND_URL || "*";
+app.use(cors({ origin: frontendUrl === "*" ? "*" : frontendUrl }));
 
 const kubeconfig = new KubeConfig();
 kubeconfig.loadFromDefault();
