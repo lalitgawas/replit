@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/init/:path*",
-      "destination": "http://13.202.245.37:3000/:path*"
+      "destination": "http://api.ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com/:path*"
     },
     {
       "source": "/api/orchestrator/:path*",
-      "destination": "http://13.202.245.37:3002/:path*"
+      "destination": "http://api.ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com/:path*"
     }
   ]
 }
