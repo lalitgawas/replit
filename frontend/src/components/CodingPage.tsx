@@ -12,7 +12,8 @@ function useSocket(replId: string) {
     const [socket, setSocket] = useState<Socket | null>(null);
 
     useEffect(() => {
-        const newSocket = io(`ws://ws.${replId}.212.2.249.218.nip.io`);
+        const clusterDomain = import.meta.env.VITE_CLUSTER_DOMAIN || "localhost";
+        const newSocket = io(`ws://ws.${replId}.${clusterDomain}`);
         setSocket(newSocket);
 
         return () => {

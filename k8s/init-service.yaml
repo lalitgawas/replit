@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: init-service
+  labels:
+    app: init-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: init-service
+  template:
+    metadata:
+      labels:
+        app: init-service
+    spec:
+      containers:
+        - name: init-service
+          image: lalit0708/replit-init-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              value: "7dbdbef6eb1bc9c50ca27bf9f338dc37" # Should be moved to K8s Secret in production
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "85ca75cffa1fd45fd86604e83447044aab54fba6fc3750ca3c4200809252aff4" # Should be moved to K8s Secret in production
+            - name: S3_ENDPOINT
+              value: "https://8653feb6d5ed38aaa5944c05e9718328.r2.cloudflarestorage.com"
+            - name: S3_BUCKET
+              value: "repl"
+            - name: PORT
+              value: "3000"
+            - name: FRONTEND_URL
+              value: "https://replit-puce.vercel.app"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: init-service
+spec:
+  selector:
+    app: init-service
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

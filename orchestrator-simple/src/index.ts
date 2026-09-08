@@ -23,6 +23,9 @@ const readAndParseKubeYaml = (filePath: string, replId: string): Array<any> => {
         let docString = doc.toString();
         const regex = new RegExp(`service_name`, 'g');
         docString = docString.replace(regex, replId);
+        
+        const clusterDomain = process.env.CLUSTER_DOMAIN || "localhost";
+        docString = docString.replace(/CLUSTER_DOMAIN/g, clusterDomain);
         console.log(docString);
         return yaml.parse(docString);
     });

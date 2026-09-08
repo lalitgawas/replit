@@ -73,7 +73,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: ws.service_name.212.2.249.218.nip.io
+  - host: ws.service_name.CLUSTER_DOMAIN
     http:
       paths:
       - path: /
@@ -83,7 +83,7 @@ spec:
             name: service_name
             port:
               number: 3001
-  - host: app.service_name.212.2.249.218.nip.io
+  - host: app.service_name.CLUSTER_DOMAIN
     http:
       paths:
       - path: /
