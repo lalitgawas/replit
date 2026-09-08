@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/init/:path*",
-      "destination": "http://api.ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com/:path*"
+      "destination": "http://ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com/:path*"
     },
     {
       "source": "/api/orchestrator/:path*",
-      "destination": "http://api.ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com/:path*"
+      "destination": "http://ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com/:path*"
     }
   ]
 }
