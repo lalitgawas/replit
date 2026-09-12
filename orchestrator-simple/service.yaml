@@ -30,6 +30,8 @@ spec:
               value: 7dbdbef6eb1bc9c50ca27bf9f338dc37
             - name: AWS_SECRET_ACCESS_KEY
               value: 85ca75cffa1fd45fd86604e83447044aab54fba6fc3750ca3c4200809252aff4
+            - name: AWS_DEFAULT_REGION
+              value: "auto"
           volumeMounts:
             - name: workspace-volume
               mountPath: /workspace

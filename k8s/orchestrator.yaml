@@ -57,9 +57,9 @@ spec:
             - containerPort: 3002
           env:
             - name: CLUSTER_DOMAIN
-              value: "ae41f1ac253364a678139871a7f94967-347610126.ap-south-1.elb.amazonaws.com" # Updated automatically
+              value: "13.206.137.151.nip.io" # Updated automatically
             - name: FRONTEND_URL
-              value: "https://replit-puce.vercel.app"
+              value: "*"
 ---
 apiVersion: v1
 kind: Service

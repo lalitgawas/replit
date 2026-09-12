@@ -32,7 +32,9 @@ spec:
             - name: PORT
               value: "3000"
             - name: FRONTEND_URL
-              value: "https://replit-puce.vercel.app"
+              value: "*"
+            - name: MONGO_URI
+              value: "mongodb+srv://lalitgawas:sPP7UWgSvenkxg1a@cluster0.d5qwx.mongodb.net/replit?appName=Cluster0"
 ---
 apiVersion: v1
 kind: Service
